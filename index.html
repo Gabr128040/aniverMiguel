@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Presença - Aniversário do Bebê</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>   
+    <script></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Bem-vindo ao Aniversário do Bebê!</h1>
+            <p>Junte-se a nós para uma celebração subaquática cheia de alegria!</p>
+        </header>
+        
+        <main class="content">
+            <img src="shark.png" alt="Bebê Tubarão" class="main-image">
+            <h2>Você vai mergulhar nessa festa?</h2>
+            <p>Estamos ansiosos para comemorar com você! Confirme sua presença abaixo:</p>
+            
+            <form id="confirmation-form" class="confirmation-form">
+                <input type="text" id="name" name="nome" placeholder="Seu Nome" required>
+                <button type="submit">Confirmar Presença</button>
+            </form>
+        </main>
+        
+        <footer class="footer">
+            <p>Marque no calendário: <strong>Data:</strong> 20 de Setembro | <strong>Local:</strong> Praia dos Corais</p>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+    (function() {
+        emailjs.init("LwPeADdSybTBCPvKj");  // Substitua YOUR_USER_ID pelo seu User ID do EmailJS
+    })(); 
+
+    document.getElementById("confirmation-form").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+
+        const name = document.getElementById("name").value;
+
+        const templateParams = {
+            name: name,
+        }; 
+
+        emailjs.send("service_62kd1bm","template_81x58di", templateParams)
+            .then(function(response) {
+                console.log('Email enviado com sucesso!', response.status, response.text);
+                alert("Confirmação enviada com sucesso! Aguardamos você🎈🎉");
+            }, function(error) {
+                console.log('Erro ao enviar o email:', error);
+                alert("Erro ao enviar confirmação.");
+            });
+    });
+
+</script>
+   
+</script>
+
+</body>
+</html>
